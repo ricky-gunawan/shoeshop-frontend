@@ -1,3 +1,4 @@
+import baseURL from "@/shared/config/baseURL";
 import { Link } from "react-router-dom";
 
 type ProductCardProps = {
@@ -7,10 +8,10 @@ type ProductCardProps = {
 
 const ProductCard = ({ product, handleAddToCart }: ProductCardProps) => {
   return (
-    <Link to={`products/${product._id}`}>
+    <Link to={`/products/${product._id}`}>
       <div className="max-w-[350px] overflow-hidden rounded-lg bg-neutral-50 shadow-md">
         <div className="aspect-square w-full overflow-hidden">
-          <img className="mx-auto" src={`/api/static/images/${product.img}`} alt={product.name} />
+          <img className="mx-auto" src={`${baseURL}/api/static/images/${product.img}`} alt={product.name} />
         </div>
         <div className="m-3 h-[3.5rem] align-bottom text-lg font-bold uppercase line-clamp-2">{product.name}</div>
         <div className="m-3 text-lg">Rp. {product.price}</div>

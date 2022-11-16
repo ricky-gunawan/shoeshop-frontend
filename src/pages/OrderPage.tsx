@@ -1,11 +1,11 @@
 import { OrderList } from "../features/order";
 
-type OrderPageProps = {};
-
-export const OrderPage = ({}: OrderPageProps) => {
+const OrderPage = () => {
   return (
     <>
       <OrderList />
     </>
   );
 };
+
+export default OrderPage;

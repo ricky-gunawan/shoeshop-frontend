@@ -1,4 +1,4 @@
-import { TrashIcon } from "@heroicons/react/outline";
+import { TrashIcon } from "@heroicons/react/24/outline";
 
 type DataCardProps = {
   title1: string;
@@ -7,7 +7,7 @@ type DataCardProps = {
   field2: string;
 };
 
-export const DataCard = ({ title1, title2, field1, field2 }: DataCardProps) => {
+const DataCard = ({ title1, title2, field1, field2 }: DataCardProps) => {
   return (
     <div className="flex rounded-lg bg-neutral-50 p-2 shadow-md">
       <div className="grow">
@@ -26,3 +26,5 @@ export const DataCard = ({ title1, title2, field1, field2 }: DataCardProps) => {
     </div>
   );
 };
+
+export default DataCard;

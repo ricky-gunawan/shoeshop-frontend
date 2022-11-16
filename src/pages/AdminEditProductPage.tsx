@@ -1,11 +1,11 @@
 import { AdminEditProduct } from "../features/admin-dashboard";
 
-type AdminEditProductPageProps = {};
-
-export const AdminEditProductPage = ({}: AdminEditProductPageProps) => {
+const AdminEditProductPage = () => {
   return (
     <>
       <AdminEditProduct />
     </>
   );
 };
+
+export default AdminEditProductPage;

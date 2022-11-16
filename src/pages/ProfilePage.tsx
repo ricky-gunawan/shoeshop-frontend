@@ -1,11 +1,11 @@
-import { Profile } from "../features/profile";
+import Profile from "@/entities/user/components/Profile";
 
-type ProfilePageProps = {};
-
-export const ProfilePage = ({}: ProfilePageProps) => {
+const ProfilePage = () => {
   return (
     <>
       <Profile />
     </>
   );
 };
+
+export default ProfilePage;

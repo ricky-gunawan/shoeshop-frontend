@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from "react";
 
 type profileProps = {};
 
-export const Profile = ({}: profileProps) => {
+const Profile = ({}: profileProps) => {
   const [editProfile, setEditProfile] = useState(false);
   const [form, setForm] = useState({
     name: "name",
@@ -87,3 +87,5 @@ export const Profile = ({}: profileProps) => {
     </form>
   );
 };
+
+export default Profile;

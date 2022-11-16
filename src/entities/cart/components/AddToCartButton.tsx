@@ -9,7 +9,7 @@ type AddToCartButtonProps = {
   product: Product;
 };
 
-export function AddToCartButton({ product }: AddToCartButtonProps) {
+const AddToCartButton = ({ product }: AddToCartButtonProps) => {
   const items = useAppSelector((store) => store.cart.userCart.cart?.items);
   const user = useAppSelector((store) => store.user.login.user);
   const { isLoading, failed } = useAppSelector((store) => store.cart.editCart);
@@ -54,4 +54,6 @@ export function AddToCartButton({ product }: AddToCartButtonProps) {
       )}
     </>
   );
-}
+};
+
+export default AddToCartButton;

@@ -6,7 +6,7 @@ type PaymentModalProps = {
   setPaymentModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const PaymentModal = ({ paymentModal, setPaymentModal }: PaymentModalProps) => {
+const PaymentModal = ({ paymentModal, setPaymentModal }: PaymentModalProps) => {
   return (
     <div className={`${paymentModal ? "fixed" : "hidden"} top-0 left-0 z-20 h-screen w-screen bg-black/60`}>
       <div className="absolute left-1/2 top-1/2 z-10 h-60 w-72 -translate-x-1/2 -translate-y-1/2 rounded-md bg-slate-100 md:w-96">
@@ -19,3 +19,5 @@ export const PaymentModal = ({ paymentModal, setPaymentModal }: PaymentModalProp
     </div>
   );
 };
+
+export default PaymentModal;

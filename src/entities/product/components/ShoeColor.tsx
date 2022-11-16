@@ -2,7 +2,7 @@ type ShoeColorProps = {
   color: string;
 };
 
-export const ShoeColor = ({ color }: ShoeColorProps) => {
+const ShoeColor = ({ color }: ShoeColorProps) => {
   return (
     <span
       className={`rounded-md px-1 ${
@@ -23,3 +23,5 @@ export const ShoeColor = ({ color }: ShoeColorProps) => {
     </span>
   );
 };
+
+export default ShoeColor;

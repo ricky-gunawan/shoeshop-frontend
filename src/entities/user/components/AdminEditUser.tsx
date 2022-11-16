@@ -3,7 +3,7 @@ import { userDummyList } from "../../../data/userDummyList";
 
 type AdminEditUserProps = {};
 
-export const AdminEditUser = ({}: AdminEditUserProps) => {
+const AdminEditUser = ({}: AdminEditUserProps) => {
   const [user, setUser] = useState(userDummyList[0]);
 
   const handleFormChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,3 +34,5 @@ export const AdminEditUser = ({}: AdminEditUserProps) => {
     </form>
   );
 };
+
+export default AdminEditUser;

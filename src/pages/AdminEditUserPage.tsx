@@ -1,11 +1,11 @@
 import { AdminEditUser } from "../features/admin-dashboard";
 
-type AdminEditUserPageProps = {};
-
-export const AdminEditUserPage = ({}: AdminEditUserPageProps) => {
+const AdminEditUserPage = () => {
   return (
     <>
       <AdminEditUser />
     </>
   );
 };
+
+export default AdminEditUserPage;

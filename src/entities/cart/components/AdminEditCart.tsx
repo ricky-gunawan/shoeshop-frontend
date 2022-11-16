@@ -4,7 +4,7 @@ import { ShoeColor } from "../../product";
 
 type AdminEditCartProps = {};
 
-export const AdminEditCart = ({}: AdminEditCartProps) => {
+const AdminEditCart = ({}: AdminEditCartProps) => {
   const [cart, setCart] = useState(cartDummyList[0]);
 
   const handleFormChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,3 +53,5 @@ export const AdminEditCart = ({}: AdminEditCartProps) => {
     </form>
   );
 };
+
+export default AdminEditCart;

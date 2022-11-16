@@ -1,11 +1,8 @@
 import { ChangeEvent, useState } from "react";
-import { productDummyList } from "../../../data/productDummyList";
-import { currencyNumberToString } from "../../../utils/currencyNumberToString";
-import { currencyStringToNumber } from "../../../utils/currencyStringToNumber";
 
 type AdminEditProductProps = {};
 
-export const AdminEditProduct = ({}: AdminEditProductProps) => {
+const AdminEditProduct = ({}: AdminEditProductProps) => {
   const [product, setProduct] = useState(productDummyList[0]);
 
   const handleFormChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -56,3 +53,5 @@ export const AdminEditProduct = ({}: AdminEditProductProps) => {
     </form>
   );
 };
+
+export default AdminEditProduct;

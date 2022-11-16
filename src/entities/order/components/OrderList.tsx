@@ -45,7 +45,7 @@ const userOrders = [
   },
 ];
 
-export const OrderList = ({}: OrderListProps) => {
+const OrderList = ({}: OrderListProps) => {
   const [paymentModal, setPaymentModal] = useState(false);
 
   return (
@@ -61,3 +61,5 @@ export const OrderList = ({}: OrderListProps) => {
     </div>
   );
 };
+
+export default OrderList;

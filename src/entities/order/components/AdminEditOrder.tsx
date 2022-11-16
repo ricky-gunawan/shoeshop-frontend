@@ -4,7 +4,7 @@ import { ShoeColor } from "../../product";
 
 type AdminEditOrderProps = {};
 
-export const AdminEditOrder = ({}: AdminEditOrderProps) => {
+const AdminEditOrder = ({}: AdminEditOrderProps) => {
   const [order, setOrder] = useState(orderDummyList[0]);
 
   const handleFormChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -120,3 +120,5 @@ export const AdminEditOrder = ({}: AdminEditOrderProps) => {
     </form>
   );
 };
+
+export default AdminEditOrder;

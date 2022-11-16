@@ -1,4 +1,4 @@
-import { DataCard } from "./DataCard";
+import DataCard from "@/shared/components/DataCard";
 
 type DataListProps = {
   data: any[];
@@ -9,7 +9,7 @@ type DataListProps = {
   field2: string;
 };
 
-export const DataList = ({ data, keyStr, title1, title2, field1, field2 }: DataListProps) => {
+const DataList = ({ data, keyStr, title1, title2, field1, field2 }: DataListProps) => {
   return (
     <div className="grid gap-2 p-2 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {data.map((item) => (
@@ -18,3 +18,5 @@ export const DataList = ({ data, keyStr, title1, title2, field1, field2 }: DataL
     </div>
   );
 };
+
+export default DataList;

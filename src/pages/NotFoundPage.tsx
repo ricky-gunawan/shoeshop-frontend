@@ -1,6 +1,4 @@
-type NotFoundPageProps = {};
-
-export const NotFoundPage = ({}: NotFoundPageProps) => {
+const NotFoundPage = () => {
   return (
     <div className="text-center">
       <p>404!</p>
@@ -8,3 +6,5 @@ export const NotFoundPage = ({}: NotFoundPageProps) => {
     </div>
   );
 };
+
+export default NotFoundPage;

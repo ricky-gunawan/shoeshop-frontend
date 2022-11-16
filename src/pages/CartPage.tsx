@@ -1,14 +1,7 @@
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { LoadingAndErrorHandler } from "../components/LoadingAndErrorHandler";
-import { CartItemList } from "../features/cart";
-import { editCartQuery } from "../redux/cart/asyncThunks/editCart";
-import { getCartQuery } from "../redux/cart/asyncThunks/getCart";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
-type CartPageProps = {};
-
-export const CartPage = ({}: CartPageProps) => {
+const CartPage = () => {
   const { isLoading, failed, cart } = useAppSelector((store) => store.cart.userCart);
   const user = useAppSelector((store) => store.user.login.user);
 
@@ -22,13 +15,9 @@ export const CartPage = ({}: CartPageProps) => {
   }, []);
   return (
     <>
-      {user ? (
-        <LoadingAndErrorHandler isLoading={isLoading} failed={failed} data={cart?.items}>
-          {cart ? <CartItemList itemList={cart.items} /> : ""}
-        </LoadingAndErrorHandler>
-      ) : (
-        <Navigate to="/login" />
-      )}
+      <CartItemList itemList={cart.items} />
     </>
   );
 };
+
+export default CartPage;

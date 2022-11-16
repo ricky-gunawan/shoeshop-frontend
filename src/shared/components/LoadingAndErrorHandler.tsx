@@ -1,35 +1,34 @@
-import { ReactNode } from "react";
-import { ErrorMessage } from "./ErrorMessage";
-import { Loader } from "./Loader";
-import { NothingToDisplay } from "./NothingToDisplay";
+import ErrorMessage from "@/shared/components/ErrorMessage";
+import Loader from "@/shared/components/Loader";
+import NetworkErrorMessage from "@/shared/components/NetworkErrorMessage";
 
 type LoadingAndErrorHandlerProps = {
-  children: ReactNode | ReactNode[];
   isLoading: boolean | undefined;
-  failed: boolean | undefined;
-  data: any;
+  isError: boolean | undefined;
+  isPaused: boolean | undefined;
 };
 
-export const LoadingAndErrorHandler = ({ isLoading, failed, data, children }: LoadingAndErrorHandlerProps) => {
-  return (
-    <>
-      {isLoading ? (
-        <div className="mt-48">
-          <Loader />
-        </div>
-      ) : failed ? (
-        <div className="mt-48">
-          <ErrorMessage />
-        </div>
-      ) : data && !Array.isArray(data) ? (
-        <>{children}</>
-      ) : Array.isArray(data) && data.length ? (
-        <>{children}</>
-      ) : (
-        <div className="mt-48">
-          <NothingToDisplay />
-        </div>
-      )}
-    </>
-  );
+const LoadingAndErrorHandler = ({ isLoading, isError, isPaused }: LoadingAndErrorHandlerProps): JSX.Element | null => {
+  if (isError) {
+    return (
+      <div className="mt-48">
+        <ErrorMessage />
+      </div>
+    );
+  } else if (isPaused) {
+    return (
+      <div className="mt-48">
+        <NetworkErrorMessage />
+      </div>
+    );
+  } else if (isLoading) {
+    return (
+      <div className="mt-48">
+        <Loader />
+      </div>
+    );
+  }
+  return null;
 };
+
+export default LoadingAndErrorHandler;

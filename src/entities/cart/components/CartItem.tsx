@@ -13,7 +13,7 @@ type CartItemProps = {
   quantity: number;
 };
 
-export const CartItem = ({ product, img, name, price, brand, color, quantity }: CartItemProps) => {
+const CartItem = ({ product, img, name, price, brand, color, quantity }: CartItemProps) => {
   const dispatch = useAppDispatch();
 
   const handleIncreaseItemQty = () => {
@@ -32,7 +32,7 @@ export const CartItem = ({ product, img, name, price, brand, color, quantity }: 
     <div className="mb-2 flex flex-col border-b border-gray-600 p-1">
       <div className="flex items-center justify-center gap-2">
         <div className="grow-1 overflow-hidden">
-          <img className="my-1 rounded-lg sm:ml-4" width={100} src={`/api/static/images/${img}`} alt={name} />
+          <img className="my-1 rounded-lg sm:ml-4" width={100} src={`${baseURL}/api/static/images/${img}`} alt={name} />
         </div>
         <div className="grow sm:ml-2">
           <h2 className="min-w-[180px] text-xs font-bold uppercase line-clamp-2 xs:text-base">{name}</h2>
@@ -59,3 +59,5 @@ export const CartItem = ({ product, img, name, price, brand, color, quantity }: 
     </div>
   );
 };
+
+export default CartItem;

@@ -14,7 +14,7 @@ type CartToOrderProps = {
   }[];
 };
 
-export const CartToOrder = ({ items }: CartToOrderProps) => {
+const CartToOrder = ({ items }: CartToOrderProps) => {
   const address = useAppSelector((store) => store.user.login.user?.address);
 
   let totalItems = 0;
@@ -80,3 +80,5 @@ export const CartToOrder = ({ items }: CartToOrderProps) => {
     </div>
   );
 };
+
+export default CartToOrder;

@@ -17,7 +17,7 @@ type CartItemListProps = {
     | [];
 };
 
-export const CartItemList = ({ itemList }: CartItemListProps) => {
+const CartItemList = ({ itemList }: CartItemListProps) => {
   return (
     <div className="flex flex-col gap-2 md:flex-row md:gap-4">
       <div className="max-w-lg md:w-1/2">
@@ -31,3 +31,5 @@ export const CartItemList = ({ itemList }: CartItemListProps) => {
     </div>
   );
 };
+
+export default CartItemList;
