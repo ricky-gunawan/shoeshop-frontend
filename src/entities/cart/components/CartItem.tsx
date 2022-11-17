@@ -1,7 +1,6 @@
-import { MinusCircleIcon, PlusCircleIcon, TrashIcon } from "@heroicons/react/outline";
-import { decreaseItemQty, deleteCartItem, incraseItemQty } from "../../../redux/cart/userCart";
-import { useAppDispatch } from "../../../redux/hooks";
-import { ShoeColor } from "../../product";
+import ShoeColor from "@/shared/components/ShoeColor";
+import baseURL from "@/shared/config/baseURL";
+import { MinusCircleIcon, PlusCircleIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 type CartItemProps = {
   product: string;
@@ -11,23 +10,12 @@ type CartItemProps = {
   brand: string;
   color: string;
   quantity: number;
+  handleIncreaseItemQty: (productId: string) => void;
+  handleDecreaseItemQty: (productId: string) => void;
+  handleDeleteItem: (productId: string) => void;
 };
 
-const CartItem = ({ product, img, name, price, brand, color, quantity }: CartItemProps) => {
-  const dispatch = useAppDispatch();
-
-  const handleIncreaseItemQty = () => {
-    dispatch(incraseItemQty(product));
-  };
-
-  const handleDecreaseItemQty = () => {
-    dispatch(decreaseItemQty(product));
-  };
-
-  const handleDeleteCartItem = () => {
-    dispatch(deleteCartItem(product));
-  };
-
+const CartItem = ({ product, img, name, price, brand, color, quantity, handleIncreaseItemQty, handleDecreaseItemQty, handleDeleteItem }: CartItemProps) => {
   return (
     <div className="mb-2 flex flex-col border-b border-gray-600 p-1">
       <div className="flex items-center justify-center gap-2">
@@ -44,16 +32,16 @@ const CartItem = ({ product, img, name, price, brand, color, quantity }: CartIte
           </h3>
           <h2 className="text-md my-1 underline">Rp. {price}</h2>
         </div>
-        <div onClick={handleDeleteCartItem} className="cursor-pointer">
+        <div onClick={() => handleDeleteItem(product)} className="cursor-pointer">
           <TrashIcon className="h-6 w-6 text-red-600" />
         </div>
       </div>
       <div className="mt-1 flex justify-around text-sm">
         <span className="">Quantity: </span>
         <div className="flex">
-          <MinusCircleIcon onClick={handleDecreaseItemQty} width={20} className="mx-2 cursor-pointer" />
+          <MinusCircleIcon onClick={() => handleDecreaseItemQty(product)} width={20} className="mx-2 cursor-pointer" />
           <span>{quantity}</span>
-          <PlusCircleIcon onClick={handleIncreaseItemQty} width={20} className="mx-2 cursor-pointer" />
+          <PlusCircleIcon onClick={() => handleIncreaseItemQty(product)} width={20} className="mx-2 cursor-pointer" />
         </div>
       </div>
     </div>

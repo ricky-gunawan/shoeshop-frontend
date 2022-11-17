@@ -1,3 +1,4 @@
+import customerCartReducer from "@/entities/cart/models/customerCartSlice";
 import filterReducer from "@/entities/product/models/filterSlice";
 import authReducer from "@/features/auth/models/authSlice";
 import modalReducer from "@/shared/models/modalSlice";
@@ -8,6 +9,7 @@ const store = configureStore({
     filter: filterReducer,
     auth: authReducer,
     modal: modalReducer,
+    customerCart: customerCartReducer,
   },
 });
 

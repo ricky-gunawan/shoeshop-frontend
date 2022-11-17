@@ -1,5 +1,3 @@
-import { AdminEditCart } from "../features/admin-dashboard";
-
 const AdminEditCartPage = () => {
   return (
     <>

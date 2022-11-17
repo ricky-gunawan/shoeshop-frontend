@@ -1,5 +1,3 @@
-import { AdminEditUser } from "../features/admin-dashboard";
-
 const AdminEditUserPage = () => {
   return (
     <>

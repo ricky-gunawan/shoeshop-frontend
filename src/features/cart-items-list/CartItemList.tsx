@@ -1,18 +1,80 @@
-import { getCartCustomerApi } from "@/entities/cart/api";
-import { useQuery } from "@tanstack/react-query";
+import { useGetCustomerCartApi, useUpdateCustomerCartApi } from "@/entities/cart/api";
+import CartItem from "@/entities/cart/components/CartItem";
+import { decreaseItemQty, deleteCartItem, increaseItemQty, setCartData } from "@/entities/cart/models/customerCartSlice";
+import useAppDispatch from "@/shared/hooks/useAppDispatch";
+import useAppSelector from "@/shared/hooks/useAppSelector";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 const CartItemList = () => {
-  const {} = useQuery({ queryKey: ["customerCart"], queryFn: getCartCustomerApi });
+  const dispatch = useAppDispatch();
+  const handleIncreaseItemQty = (productId: string) => {
+    dispatch(increaseItemQty(productId));
+  };
+  const handleDecreaseItemQty = (productId: string) => {
+    dispatch(decreaseItemQty(productId));
+  };
+  const handleDeleteItem = (productId: string) => {
+    dispatch(deleteCartItem(productId));
+  };
+
+  const getCustomerCartApi = useGetCustomerCartApi();
+  const updateCustomerCartApi = useUpdateCustomerCartApi();
+  const customerCart = useAppSelector((store) => store.customerCart);
+  const updatedCartItems: CartItemsData = customerCart.map((cartItem) => {
+    return {
+      product: cartItem.product,
+      name: cartItem.name,
+      img: cartItem.img,
+      price: cartItem.price,
+      brand: cartItem.brand,
+      color: cartItem.color,
+      quantity: cartItem.quantity,
+    };
+  });
+
+  const [isDataReady, setIsDataReady] = useState(false);
+  const [isFirstMounted, setIsFirstMounted] = useState(true);
+
+  const { refetch } = useQuery({
+    queryKey: ["customerCart"],
+    queryFn: getCustomerCartApi,
+    enabled: false,
+    // staleTime: Infinity,
+    // refetchOnMount: "always",
+    onSuccess: (data) => {
+      dispatch(setCartData(data));
+      setIsDataReady(true);
+    },
+  });
+
+  const { mutate } = useMutation({
+    mutationFn: updateCustomerCartApi,
+  });
+
+  useEffect(() => {
+    isFirstMounted && refetch();
+    isDataReady && mutate(updatedCartItems);
+    setIsFirstMounted(false);
+  }, [customerCart]);
+
   return (
-    <div className="flex flex-col gap-2 md:flex-row md:gap-4">
-      <div className="max-w-lg md:w-1/2">
-        {itemList.map((product) => (
-          <CartItem key={product.product} product={product.product} name={product.name} img={product.img} price={product.price} brand={product.brand} color={product.color} quantity={product.quantity} />
-        ))}
-      </div>
-      <div className="left-1/2 mx-auto max-w-screen-sm md:fixed md:mx-4 md:max-h-[80vh]">
-        <CartToOrder items={itemList} />
-      </div>
+    <div className="max-w-lg md:w-1/2">
+      {customerCart.map(({ product, name, img, price, brand, color, quantity }) => (
+        <CartItem
+          key={product}
+          product={product}
+          name={name}
+          img={img}
+          price={price}
+          brand={brand}
+          color={color}
+          quantity={quantity}
+          handleIncreaseItemQty={handleIncreaseItemQty}
+          handleDecreaseItemQty={handleDecreaseItemQty}
+          handleDeleteItem={handleDeleteItem}
+        />
+      ))}
     </div>
   );
 };

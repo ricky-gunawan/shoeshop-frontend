@@ -24,7 +24,7 @@ const CustomerBar = () => {
             <div className="rounded-md py-1 px-2 hover:bg-slate-200">Profile</div>
           </Link>
           <div onClick={handleLogoutDialog}>
-            <div className="cursor-pointer rounded-md py-1 px-2 hover:bg-slate-200">Log Out</div>
+            <div className="cursor-pointer rounded-md py-1 px-2 hover:bg-slate-200">Logout</div>
           </div>
         </div>
       </div>

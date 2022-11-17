@@ -1,13 +1,16 @@
 import store from "@/app/store";
 import AdminPageLayout from "@/pages/AdminPageLayout";
+import CartPage from "@/pages/CartPage";
 import CustomerPageLayout from "@/pages/CustomerPageLayout";
 import LoginPage from "@/pages/LoginPage";
 import NotFoundPage from "@/pages/NotFoundPage";
+import OrderPage from "@/pages/OrderPage";
 import PersistLogin from "@/pages/PersistLogin";
 import ProductDetailPage from "@/pages/ProductDetailPage";
 import ProductDisplayDetailPage from "@/pages/ProductDisplayDetailPage";
 import ProductDisplayPage from "@/pages/ProductDisplayPage";
 import ProductListPage from "@/pages/ProductListPage";
+import ProfilePage from "@/pages/ProfilePage";
 import PublicPageLayout from "@/pages/PublicPageLayout";
 import SignupPage from "@/pages/SignupPage";
 import AppContainer from "@/shared/components/AppContainer";
@@ -41,9 +44,9 @@ function App() {
               <Route element={<CustomerPageLayout />}>
                 <Route path="products" element={<ProductListPage />} />
                 <Route path="products/:productId" element={<ProductDetailPage />} />
-                {/* <Route path="cart" element={<CartPage />} /> */}
-                {/* <Route path="orders" element={<OrderPage />} /> */}
-                {/* <Route path="profile" element={<ProfilePage />} /> */}
+                <Route path="cart" element={<CartPage />} />
+                {/* <Route path="orders" element={<OrderPage />} />
+                <Route path="profile" element={<ProfilePage />} /> */}
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
 

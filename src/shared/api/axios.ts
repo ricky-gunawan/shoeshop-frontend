@@ -3,7 +3,6 @@ import axios from "axios";
 
 export const axiosPrivate = axios.create({
   baseURL,
-  headers: { "Content-Type": "aplication/json" },
   withCredentials: true,
 });
 

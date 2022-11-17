@@ -1,6 +1,3 @@
-import { productDummyList } from "../data/productDummyList";
-import { DataList } from "../features/admin-dashboard";
-
 const AdminProductPage = () => {
   return (
     <>

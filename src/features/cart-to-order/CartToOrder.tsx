@@ -1,29 +1,11 @@
-import { useAppSelector } from "../../../redux/hooks";
-import { currencyNumberToString } from "../../../utils/currencyNumberToString";
-import { currencyStringToNumber } from "../../../utils/currencyStringToNumber";
+import useCartToOrder from "@/entities/cart/hooks/useCartToOrder";
+import useAppSelector from "@/shared/hooks/useAppSelector";
 
-type CartToOrderProps = {
-  items: {
-    product: string;
-    img: string;
-    name: string;
-    price: string;
-    brand: string;
-    color: string;
-    quantity: number;
-  }[];
-};
+const CartToOrder = () => {
+  const customerCart = useAppSelector((store) => store.customerCart);
+  const address = useAppSelector((store) => store.auth.address);
+  const { totalItems, totalPriceString } = useCartToOrder(customerCart);
 
-const CartToOrder = ({ items }: CartToOrderProps) => {
-  const address = useAppSelector((store) => store.user.login.user?.address);
-
-  let totalItems = 0;
-  let totalPrice = 0;
-  items.forEach((product) => {
-    totalItems = totalItems + product.quantity;
-    totalPrice = totalPrice + currencyStringToNumber(product.price) * product.quantity;
-  });
-  const totalPriceString = currencyNumberToString(totalPrice);
   return (
     <div className="h-fit max-h-full w-full rounded-lg bg-neutral-50 p-1 shadow-md">
       <form>
@@ -34,7 +16,7 @@ const CartToOrder = ({ items }: CartToOrderProps) => {
               <td className="p-2 align-top">Items</td>
               <td className="w-4 p-2 align-top">:</td>
               <td className="flex max-h-[30vh] flex-wrap gap-2 overflow-auto p-2 align-top">
-                {items.map((product) => (
+                {customerCart.map((product) => (
                   <div key={product.product} className="flex w-fit justify-center gap-2 border p-1">
                     <div className="mt-1 grow sm:ml-2">
                       <h2 className="text-xs font-bold uppercase">{product.name}</h2>

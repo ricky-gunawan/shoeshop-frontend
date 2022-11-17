@@ -1,3 +1,3 @@
-import ProductDetails from "./ProductDetails";
+import ProductDetails from "@/features/product-details/ProductDetails";
 
 export default ProductDetails;

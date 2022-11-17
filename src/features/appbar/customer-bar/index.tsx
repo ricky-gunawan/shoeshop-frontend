@@ -1,3 +1,3 @@
-import CustomerBar from "./CustomerBar";
+import CustomerBar from "@/features/appbar/customer-bar/CustomerBar";
 
 export default CustomerBar;

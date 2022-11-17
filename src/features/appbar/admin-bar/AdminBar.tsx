@@ -20,11 +20,11 @@ const AdminBar = () => {
         <UserCircleIcon className="mb-1 h-10 w-10 bg-green-700" />
         <div className="ml-1 hidden text-xl capitalize text-white md:block">{name.split(" ")[0]}</div>
         <div className="absolute top-3/4 right-2 m-1 hidden cursor-pointer rounded-md border bg-neutral-50 p-2 text-black group-hover:block md:right-4">
-          <Link to="/profile">
+          <Link to="/admin/profile">
             <div className="rounded-md py-1 px-2 hover:bg-slate-200">Profile</div>
           </Link>
           <div onClick={handleLogoutDialog}>
-            <div className="cursor-pointer rounded-md py-1 px-2 hover:bg-slate-200">Log Out</div>
+            <div className="cursor-pointer rounded-md py-1 px-2 hover:bg-slate-200">Logout</div>
           </div>
         </div>
       </div>

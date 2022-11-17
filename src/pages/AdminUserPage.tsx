@@ -1,6 +1,3 @@
-import { userDummyList } from "../data/userDummyList";
-import { DataList } from "../features/admin-dashboard";
-
 const AdminUserPage = () => {
   return (
     <>

@@ -1,4 +1,4 @@
-import ShoeColor from "@/entities/product/components/ShoeColor";
+import ShoeColor from "@/shared/components/ShoeColor";
 import baseURL from "@/shared/config/baseURL";
 
 type ProductProps = {

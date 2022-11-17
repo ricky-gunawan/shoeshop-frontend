@@ -1,22 +1,14 @@
-import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import CartItemList from "@/features/cart-items-list";
+import CartToOrder from "@/features/cart-to-order";
 
 const CartPage = () => {
-  const { isLoading, failed, cart } = useAppSelector((store) => store.cart.userCart);
-  const user = useAppSelector((store) => store.user.login.user);
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    user && dispatch(getCartQuery());
-    return () => {
-      dispatch(editCartQuery({ cartItem: undefined }));
-    };
-  }, []);
   return (
-    <>
-      <CartItemList itemList={cart.items} />
-    </>
+    <div className="flex flex-col gap-2 md:flex-row md:gap-4">
+      <CartItemList />
+      <div className="left-1/2 mx-auto max-w-screen-sm md:fixed md:mx-4 md:max-h-[80vh]">
+        <CartToOrder />
+      </div>
+    </div>
   );
 };
 
