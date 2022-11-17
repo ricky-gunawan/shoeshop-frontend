@@ -1,15 +1,14 @@
 import useAxiosPrivate from "@/shared/hooks/useAxiosPrivate";
-import { AxiosResponse } from "axios";
 
 // customer
-export const useGetOrdersCustomerApi = () => {
+export const useGetCustomerOrdersApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async () => {
-    const resp = await axiosPrivate.get(`/cust-api/orders`);
+    const resp = await axiosPrivate.get<Order[]>(`/cust-api/orders`);
     return resp.data;
   };
 };
-export const useCreateOrderCustomerApi = () => {
+export const useCreateCustomerOrderApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async (orderData: OrderData) => {
     const resp = await axiosPrivate.post(`/cust-api/orders`, { ...orderData });
@@ -18,28 +17,28 @@ export const useCreateOrderCustomerApi = () => {
 };
 
 // admin
-export const useGetOrdersAdminApi = () => {
+export const useGetAdminOrdersApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async () => {
     const resp = await axiosPrivate.get(`/adm-api/orders`);
     return resp.data;
   };
 };
-export const useGetOrderAdminApi = () => {
+export const useGetAdminOrderApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async (orderId: string) => {
     const resp = await axiosPrivate.get(`/adm-api/orders/${orderId}`);
     return resp.data;
   };
 };
-export const useUpdateOrderAdminApi = () => {
+export const useUpdateAdminOrderApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async (orderId: string, orderData: OrderData) => {
     const resp = await axiosPrivate.put(`/adm-api/orders/${orderId}`, { ...orderData });
     return resp.data;
   };
 };
-export const useDeleteOrderAdminApi = () => {
+export const useDeleteAdminOrderApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async (orderId: string) => {
     const resp = await axiosPrivate.delete(`/adm-api/orders/${orderId}`);

@@ -1,4 +1,4 @@
-import ProductDisplay from "@/features/product-display/ProductDisplay";
+import ProductDisplay from "@/features/product-display";
 
 const ProductDisplayPage = () => {
   return (

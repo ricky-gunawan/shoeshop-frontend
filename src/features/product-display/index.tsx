@@ -1,3 +1,3 @@
-import ProductDisplayCard from "@/entities/product/components/ProductDisplayCard";
+import ProductDisplay from "@/features/product-display/ProductDisplay";
 
-export default ProductDisplayCard;
+export default ProductDisplay;

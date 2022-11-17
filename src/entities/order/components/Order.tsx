@@ -1,4 +1,5 @@
-import { ShoeColor } from "../../product";
+import ShoeColor from "@/shared/components/ShoeColor";
+import baseURL from "@/shared/config/baseURL";
 
 type orderProps = {
   date: string;
@@ -16,10 +17,10 @@ type orderProps = {
   address: string;
   payment: string;
   isPaid: boolean;
-  setPaymentModal: React.Dispatch<React.SetStateAction<boolean>>;
+  handlePaymentModal: () => void;
 };
 
-const Order = ({ date, items, totalItems, totalPrice, address, payment, isPaid, setPaymentModal }: orderProps) => {
+const Order = ({ date, items, totalItems, totalPrice, address, payment, isPaid, handlePaymentModal }: orderProps) => {
   return (
     <div className="my-4 w-full self-start rounded-lg border-2 p-1">
       <div className="mx-auto w-fit border-b-2 text-lg font-semibold">Order Details {`(${date})`}</div>
@@ -78,7 +79,7 @@ const Order = ({ date, items, totalItems, totalPrice, address, payment, isPaid, 
           ""
         ) : (
           <div>
-            <button onClick={() => setPaymentModal(true)} className="m-2 rounded-lg bg-green-700 p-2 text-sm font-semibold uppercase text-white hover:bg-green-800">
+            <button onClick={handlePaymentModal} className="m-2 rounded-lg bg-green-700 p-2 text-sm font-semibold uppercase text-white hover:bg-green-800">
               Pay Now
             </button>
           </div>

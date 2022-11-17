@@ -66,6 +66,27 @@ declare type UserLoginData = {
   password: string;
 };
 
+declare type Order = {
+  _id: string;
+  user: string;
+  date: string;
+  items: {
+    _id: string;
+    product: string;
+    name: string;
+    img: string;
+    price: string;
+    brand: string;
+    color: string;
+    quantity: number;
+  }[];
+  totalItems: number;
+  totalPrice: string;
+  address: string;
+  payment: string;
+  isPaid: boolean;
+};
+
 declare type OrderData = {
   date: string;
   items: {

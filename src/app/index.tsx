@@ -45,8 +45,8 @@ function App() {
                 <Route path="products" element={<ProductListPage />} />
                 <Route path="products/:productId" element={<ProductDetailPage />} />
                 <Route path="cart" element={<CartPage />} />
-                {/* <Route path="orders" element={<OrderPage />} />
-                <Route path="profile" element={<ProfilePage />} /> */}
+                <Route path="orders" element={<OrderPage />} />
+                {/* <Route path="profile" element={<ProfilePage />} /> */}
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
 

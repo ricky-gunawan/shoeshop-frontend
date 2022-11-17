@@ -1,14 +1,11 @@
-import useCartToOrder from "@/entities/cart/hooks/useCartToOrder";
-import useAppSelector from "@/shared/hooks/useAppSelector";
+import useCreateOrder from "@/entities/cart/hooks/useCreateOrder";
 
 const CartToOrder = () => {
-  const customerCart = useAppSelector((store) => store.customerCart);
-  const address = useAppSelector((store) => store.auth.address);
-  const { totalItems, totalPriceString } = useCartToOrder(customerCart);
+  const { payment, address, totalItems, totalPriceString, customerCart, handleSelectPayment, handleCrateOrder } = useCreateOrder();
 
   return (
     <div className="h-fit max-h-full w-full rounded-lg bg-neutral-50 p-1 shadow-md">
-      <form>
+      <div>
         <div className="mx-auto w-fit border-b-4 text-lg font-semibold">Order Details</div>
         <table className="">
           <tbody>
@@ -46,7 +43,7 @@ const CartToOrder = () => {
               <td className="p-2">Payment</td>
               <td className="p-2">:</td>
               <td className="p-2">
-                <select className="rounded-sm py-1" name="payment" id="payment">
+                <select onChange={handleSelectPayment} value={payment} name="payment" id="payment" className="rounded-sm py-1">
                   <option value="paypal">Paypal</option>
                   <option value="stripe">Stripe</option>
                   <option value="bitcoin">Bitcoin</option>
@@ -56,9 +53,11 @@ const CartToOrder = () => {
           </tbody>
         </table>
         <div className="flex justify-end">
-          <input type="submit" value="place an order" className="m-2 cursor-pointer rounded-lg bg-green-700 p-2 text-sm font-semibold uppercase text-white hover:bg-green-800" />
+          <button onClick={handleCrateOrder} className="m-2 rounded-lg bg-green-700 p-2 text-sm font-semibold uppercase text-white hover:bg-green-800">
+            place an order
+          </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

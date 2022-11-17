@@ -1,3 +1,5 @@
+import OrderList from "@/features/orders-list";
+
 const OrderPage = () => {
   return (
     <>
