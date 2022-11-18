@@ -8,7 +8,7 @@ const ProductDisplayDetails = () => {
   const params = useParams<{ productDisplayId: string }>();
   const productDisplayId = params.productDisplayId || "";
   const getSingleProductDisplayApi = useGetSingleProductDisplayApi();
-  const { data, isLoading, isError, isPaused } = useQuery<Product>({ queryKey: ["singleProductDisplay", productDisplayId], queryFn: () => getSingleProductDisplayApi(productDisplayId) });
+  const { data, isLoading, isError, isPaused } = useQuery({ queryKey: ["singleProductDisplay", productDisplayId], queryFn: () => getSingleProductDisplayApi(productDisplayId) });
 
   if (isLoading || isError || isPaused) {
     return <LoadingAndErrorHandler isLoading={isLoading} isError={isError} isPaused={isPaused} />;

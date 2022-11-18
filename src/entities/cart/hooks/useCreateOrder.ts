@@ -1,5 +1,5 @@
 import { useUpdateCustomerCartApi } from "@/entities/cart/api";
-import useCartToOrder from "@/entities/cart/hooks/useCartToOrder";
+import useCalculateCartItems from "@/entities/cart/hooks/useCalculateCartItems";
 import { useCreateCustomerOrderApi } from "@/entities/order/api";
 import useAppDispatch from "@/shared/hooks/useAppDispatch";
 import useAppSelector from "@/shared/hooks/useAppSelector";
@@ -16,7 +16,7 @@ const useCreateOrder = () => {
   const { feedback } = useAppSelector((store) => store.modal);
   const customerCart = useAppSelector((store) => store.customerCart);
   const address = useAppSelector((store) => store.auth.address);
-  const { totalItems, totalPriceString } = useCartToOrder(customerCart);
+  const { totalItems, totalPriceString } = useCalculateCartItems(customerCart);
   const [payment, setPayment] = useState("paypal");
   const [createOrderDialog, setCreateOrderDialog] = useState(false);
 
@@ -25,7 +25,7 @@ const useCreateOrder = () => {
     setPayment(e.target.value);
   };
 
-  const updatedCartItems: CartItemsData = customerCart.map((cartItem) => {
+  const updatedCartItems: CartItemData[] = customerCart.map((cartItem) => {
     return {
       product: cartItem.product,
       name: cartItem.name,
@@ -50,7 +50,7 @@ const useCreateOrder = () => {
     mutationFn: updateCustomerCartApi,
   });
 
-  const { mutate: mutateOrder } = useMutation({
+  const { mutate: createOrder } = useMutation({
     mutationFn: createCustomerOrderApi,
     onSuccess: (data: UserCred) => {
       dispatch(setModalContent({ header: "Message", message: "Successfully create an order" }));
@@ -64,10 +64,6 @@ const useCreateOrder = () => {
     },
   });
 
-  const createOrder = () => {
-    mutateOrder(orderData);
-  };
-
   const handleCrateOrder = () => {
     dispatch(setModalContent({ header: "Place an Order?", message: `Total items: ${totalItems}, total price: ${totalPriceString}` }));
     dispatch(setModalNeedFeedback(true));
@@ -77,7 +73,7 @@ const useCreateOrder = () => {
 
   useEffect(() => {
     if (createOrderDialog && feedback) {
-      createOrder();
+      createOrder(orderData);
       dispatch(setModalFeedback(false));
     }
     setCreateOrderDialog(false);

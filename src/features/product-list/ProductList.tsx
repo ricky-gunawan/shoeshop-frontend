@@ -1,3 +1,4 @@
+import useUpdateCart from "@/entities/cart/hooks/useUpdateCart";
 import { useGetProductsApi } from "@/entities/product/api";
 import ProductCard from "@/entities/product/components/ProductCard";
 import LoadingAndErrorHandler from "@/shared/components/LoadingAndErrorHandler";
@@ -7,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const ProductList = () => {
   const getProductsApi = useGetProductsApi();
-  const { data, isLoading, isError, isPaused } = useQuery<Product[]>({ queryKey: ["customerProducts"], queryFn: getProductsApi });
+  const { data, isLoading, isError, isPaused } = useQuery({ queryKey: ["customerProducts"], queryFn: getProductsApi });
   const { brand, color } = useAppSelector((store) => store.filter);
 
   let products;
@@ -21,7 +22,7 @@ const ProductList = () => {
     products = data?.filter((product) => product.brand === brand && product.color === color);
   }
 
-  const handleAddToCart = () => {};
+  const { handleAddProductToCart } = useUpdateCart();
 
   if (isLoading || isError || isPaused) {
     return <LoadingAndErrorHandler isLoading={isLoading} isError={isError} isPaused={isPaused} />;
@@ -32,7 +33,7 @@ const ProductList = () => {
       {Array.isArray(products) && products.length ? (
         <div className="grid grid-cols-2 gap-x-2 gap-y-4 md:grid-cols-3 lg:ml-40 lg:grid-cols-4">
           {products?.map((product) => (
-            <ProductCard key={product._id} product={product} handleAddToCart={handleAddToCart} />
+            <ProductCard key={product._id} product={product} handleAddProductToCart={handleAddProductToCart} />
           ))}
         </div>
       ) : (

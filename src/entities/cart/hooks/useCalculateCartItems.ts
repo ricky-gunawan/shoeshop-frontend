@@ -1,7 +1,7 @@
 import currencyNumberToString from "@/shared/utils/currencyNumberToString";
 import currencyStringToNumber from "@/shared/utils/currencyStringToNumber";
 
-const useCartToOrder = (items: CartItemsData) => {
+const useCalculateCartItems = (items: CartItemData[]) => {
   let totalItems = 0;
   let totalPrice = 0;
   items.forEach((product) => {
@@ -13,4 +13,4 @@ const useCartToOrder = (items: CartItemsData) => {
   return { totalItems, totalPriceString };
 };
 
-export default useCartToOrder;
+export default useCalculateCartItems;

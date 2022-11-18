@@ -1,12 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: CartItems = [];
+const initialState: CartItemData[] = [];
 
 const customerCartSlice = createSlice({
   name: "customerCart",
   initialState,
   reducers: {
-    setCartData: (_, action: { payload: CartItems }) => action.payload,
+    setCartData: (_, action: { payload: CartItem[] }) => action.payload,
+    addProductToCart: (state, action: { payload: Product }) => {
+      let itemNotExist = true;
+      state.forEach((item, index) => {
+        if (item.product === action.payload._id) {
+          itemNotExist = false;
+          state[index].quantity += 1;
+        }
+      });
+      if (itemNotExist) {
+        const cartItemData: CartItemData = {
+          product: action.payload._id,
+          name: action.payload.name,
+          img: action.payload.img,
+          price: action.payload.price,
+          brand: action.payload.brand,
+          color: action.payload.color,
+          quantity: 1,
+        };
+        state.push(cartItemData);
+      }
+    },
     increaseItemQty: (state, action: { payload: string }) => {
       state.forEach((item, index) => {
         if (item.product === action.payload) {
@@ -31,7 +52,7 @@ const customerCartSlice = createSlice({
   },
 });
 
-export const { setCartData, increaseItemQty, decreaseItemQty, deleteCartItem } = customerCartSlice.actions;
+export const { addProductToCart, setCartData, increaseItemQty, decreaseItemQty, deleteCartItem } = customerCartSlice.actions;
 
 const customerCartReducer = customerCartSlice.reducer;
 export default customerCartReducer;

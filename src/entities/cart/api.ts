@@ -4,13 +4,13 @@ import useAxiosPrivate from "@/shared/hooks/useAxiosPrivate";
 export const useGetCustomerCartApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async () => {
-    const resp = await axiosPrivate.get<CartItems>(`/cust-api/carts`);
+    const resp = await axiosPrivate.get<CartItem[]>(`/cust-api/carts`);
     return resp.data;
   };
 };
 export const useUpdateCustomerCartApi = () => {
   const axiosPrivate = useAxiosPrivate();
-  return async (items: CartItemsData) => {
+  return async (items: CartItemData[]) => {
     const resp = await axiosPrivate.put(`/cust-api/carts`, { items });
     return resp.data;
   };
@@ -33,7 +33,7 @@ export const useGetAdminCartApi = () => {
 };
 export const useUpdateAdminCartApi = () => {
   const axiosPrivate = useAxiosPrivate();
-  return async (userId: string, items: CartItemsData) => {
+  return async (userId: string, items: CartItemData[]) => {
     const resp = await axiosPrivate.put(`/adm-api/carts/${userId}`, { items });
     return resp.data;
   };

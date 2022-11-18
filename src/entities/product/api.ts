@@ -5,14 +5,14 @@ import { AxiosResponse } from "axios";
 // public
 export const useGetProductsDisplayApi = () => {
   return async () => {
-    const resp = await axiosPublic.get(`/api/products-display`);
+    const resp = await axiosPublic.get<Product[]>(`/api/products-display`);
     return resp.data;
   };
 };
 
 export const useGetSingleProductDisplayApi = () => {
   return async (productId: string) => {
-    const resp = await axiosPublic.get(`/api/products-display/${productId}`);
+    const resp = await axiosPublic.get<Product>(`/api/products-display/${productId}`);
     return resp.data;
   };
 };
@@ -28,7 +28,7 @@ export const useGetProductsApi = () => {
 export const useGetProductApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async (productId: string) => {
-    const resp = await axiosPrivate.get(`/cust-api/products/${productId}`);
+    const resp = await axiosPrivate.get<Product>(`/cust-api/products/${productId}`);
     return resp.data;
   };
 };

@@ -1,61 +1,9 @@
-import { useGetCustomerCartApi, useUpdateCustomerCartApi } from "@/entities/cart/api";
 import CartItem from "@/entities/cart/components/CartItem";
-import { decreaseItemQty, deleteCartItem, increaseItemQty, setCartData } from "@/entities/cart/models/customerCartSlice";
+import useUpdateCart from "@/entities/cart/hooks/useUpdateCart";
 import Loader from "@/shared/components/Loader";
-import useAppDispatch from "@/shared/hooks/useAppDispatch";
-import useAppSelector from "@/shared/hooks/useAppSelector";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 
 const CartItemList = () => {
-  const dispatch = useAppDispatch();
-  const handleIncreaseItemQty = (productId: string) => {
-    dispatch(increaseItemQty(productId));
-  };
-  const handleDecreaseItemQty = (productId: string) => {
-    dispatch(decreaseItemQty(productId));
-  };
-  const handleDeleteItem = (productId: string) => {
-    dispatch(deleteCartItem(productId));
-  };
-
-  const getCustomerCartApi = useGetCustomerCartApi();
-  const updateCustomerCartApi = useUpdateCustomerCartApi();
-  const customerCart = useAppSelector((store) => store.customerCart);
-  const updatedCartItems: CartItemsData = customerCart.map((cartItem) => {
-    return {
-      product: cartItem.product,
-      name: cartItem.name,
-      img: cartItem.img,
-      price: cartItem.price,
-      brand: cartItem.brand,
-      color: cartItem.color,
-      quantity: cartItem.quantity,
-    };
-  });
-
-  const [isDataReady, setIsDataReady] = useState(false);
-  const [isFirstMounted, setIsFirstMounted] = useState(true);
-
-  const { refetch, isLoading, isPaused } = useQuery({
-    queryKey: ["customerCart"],
-    queryFn: getCustomerCartApi,
-    enabled: false,
-    onSuccess: (data) => {
-      dispatch(setCartData(data));
-      setIsDataReady(true);
-    },
-  });
-
-  const { mutate } = useMutation({
-    mutationFn: updateCustomerCartApi,
-  });
-
-  useEffect(() => {
-    isFirstMounted && refetch();
-    isDataReady && mutate(updatedCartItems);
-    setIsFirstMounted(false);
-  }, [customerCart]);
+  const { isLoading, isPaused, customerCart, handleIncreaseItemQty, handleDecreaseItemQty, handleDeleteItem } = useUpdateCart();
 
   return (
     <div className="max-w-lg md:w-1/2">

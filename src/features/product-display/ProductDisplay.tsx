@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const ProductDisplay = () => {
   const getProductDisplayApi = useGetProductsDisplayApi();
-  const { data: products, isLoading, isError, isPaused } = useQuery<Product[]>({ queryKey: ["productsDisplay"], queryFn: getProductDisplayApi, staleTime: 5 * 60 * 1000 });
+  const { data: products, isLoading, isError, isPaused } = useQuery({ queryKey: ["productsDisplay"], queryFn: getProductDisplayApi, staleTime: 5 * 60 * 1000 });
 
   if (isLoading || isError || isPaused) {
     return <LoadingAndErrorHandler isLoading={isLoading} isError={isError} isPaused={isPaused} />;

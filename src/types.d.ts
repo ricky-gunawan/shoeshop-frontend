@@ -17,7 +17,7 @@ declare type ProductData = {
   description: string;
 };
 
-declare type CartItems = {
+declare type CartItem = {
   _id: string;
   product: string;
   name: string;
@@ -26,9 +26,9 @@ declare type CartItems = {
   brand: string;
   color: string;
   quantity: number;
-}[];
+};
 
-declare type CartItemsData = {
+declare type CartItemData = {
   product: string;
   name: string;
   img: string;
@@ -36,7 +36,7 @@ declare type CartItemsData = {
   brand: string;
   color: string;
   quantity: number;
-}[];
+};
 
 declare type UserCred = {
   _id: string;

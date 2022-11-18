@@ -1,11 +1,15 @@
+import useUpdateCart from "@/entities/cart/hooks/useUpdateCart";
 import ShoeColor from "@/shared/components/ShoeColor";
 import baseURL from "@/shared/config/baseURL";
+import { MouseEvent } from "react";
 
 type ProductProps = {
   product: Product;
+  isButton?: boolean;
+  handleAddProductToCart?: (product: Product) => void;
 };
 
-const Product = ({ product }: ProductProps) => {
+const Product = ({ product, isButton = false, handleAddProductToCart }: ProductProps) => {
   return (
     <div className="flex max-w-screen-lg flex-col gap-4 sm:flex-row lg:mx-auto">
       <div className="w-full overflow-hidden sm:w-1/2">
@@ -21,7 +25,15 @@ const Product = ({ product }: ProductProps) => {
           Color: <ShoeColor color={product.color} />
         </h3>
         <p className="grow text-base">{product.description}</p>
-        <div className="flex grow-0 justify-end">{/* <AddToCartButton product={product} /> */} add to cart</div>
+        <div className="flex grow-0 justify-end">
+          {isButton && handleAddProductToCart ? (
+            <button onClick={() => handleAddProductToCart(product)} className="rounded-md bg-green-700 p-2 font-semibold uppercase text-neutral-50 hover:bg-green-800">
+              add to cart
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </div>
   );
