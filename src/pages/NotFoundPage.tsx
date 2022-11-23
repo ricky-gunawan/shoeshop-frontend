@@ -1,9 +1,14 @@
+import BackButton from "@/shared/components/BackButton";
+
 const NotFoundPage = () => {
   return (
-    <div className="text-center">
-      <p>404!</p>
-      <p>The page you are looking is not exist</p>
-    </div>
+    <>
+      <BackButton />
+      <div className="text-center">
+        <p>404!</p>
+        <p>The page you are looking is not exist</p>
+      </div>
+    </>
   );
 };
 

@@ -20,20 +20,20 @@ export const useCreateCustomerOrderApi = () => {
 export const useGetAdminOrdersApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async () => {
-    const resp = await axiosPrivate.get(`/adm-api/orders`);
+    const resp = await axiosPrivate.get<Order[]>(`/adm-api/orders`);
     return resp.data;
   };
 };
 export const useGetAdminOrderApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async (orderId: string) => {
-    const resp = await axiosPrivate.get(`/adm-api/orders/${orderId}`);
+    const resp = await axiosPrivate.get<Order>(`/adm-api/orders/${orderId}`);
     return resp.data;
   };
 };
 export const useUpdateAdminOrderApi = () => {
   const axiosPrivate = useAxiosPrivate();
-  return async (orderId: string, orderData: OrderData) => {
+  return async ({ orderId, orderData }: { orderId: string; orderData: OrderData }) => {
     const resp = await axiosPrivate.put(`/adm-api/orders/${orderId}`, { ...orderData });
     return resp.data;
   };

@@ -1,5 +1,5 @@
 import useUpdateCart from "@/entities/cart/hooks/useUpdateCart";
-import { useGetProductsApi } from "@/entities/product/api";
+import { useGetCustomerProductsApi } from "@/entities/product/api";
 import ProductCard from "@/entities/product/components/ProductCard";
 import LoadingAndErrorHandler from "@/shared/components/LoadingAndErrorHandler";
 import NothingToDisplay from "@/shared/components/NothingToDisplay";
@@ -7,7 +7,7 @@ import useAppSelector from "@/shared/hooks/useAppSelector";
 import { useQuery } from "@tanstack/react-query";
 
 const ProductList = () => {
-  const getProductsApi = useGetProductsApi();
+  const getProductsApi = useGetCustomerProductsApi();
   const { data, isLoading, isError, isPaused } = useQuery({ queryKey: ["customerProducts"], queryFn: getProductsApi });
   const { brand, color } = useAppSelector((store) => store.filter);
 

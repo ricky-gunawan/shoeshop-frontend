@@ -1,6 +1,7 @@
 import { useUpdateCustomerCartApi } from "@/entities/cart/api";
 import useCalculateCartItems from "@/entities/cart/hooks/useCalculateCartItems";
 import { useCreateCustomerOrderApi } from "@/entities/order/api";
+import useGetUserProfile from "@/entities/user/hooks/useGetUserProfile";
 import useAppDispatch from "@/shared/hooks/useAppDispatch";
 import useAppSelector from "@/shared/hooks/useAppSelector";
 import { setModalContent, setModalDisplay, setModalFeedback, setModalNeedFeedback } from "@/shared/models/modalSlice";
@@ -15,7 +16,7 @@ const useCreateOrder = () => {
   const createCustomerOrderApi = useCreateCustomerOrderApi();
   const { feedback } = useAppSelector((store) => store.modal);
   const customerCart = useAppSelector((store) => store.customerCart);
-  const address = useAppSelector((store) => store.auth.address);
+  const { userProfile } = useGetUserProfile();
   const { totalItems, totalPriceString } = useCalculateCartItems(customerCart);
   const [payment, setPayment] = useState("paypal");
   const [createOrderDialog, setCreateOrderDialog] = useState(false);
@@ -42,7 +43,7 @@ const useCreateOrder = () => {
     items: updatedCartItems,
     totalItems,
     totalPrice: totalPriceString,
-    address,
+    address: userProfile?.address || "",
     payment,
   };
 
@@ -79,7 +80,7 @@ const useCreateOrder = () => {
     setCreateOrderDialog(false);
   }, [feedback]);
 
-  return { payment, customerCart, address, totalItems, totalPriceString, handleSelectPayment, handleCrateOrder };
+  return { payment, customerCart, address: userProfile?.address, totalItems, totalPriceString, handleSelectPayment, handleCrateOrder };
 };
 
 export default useCreateOrder;

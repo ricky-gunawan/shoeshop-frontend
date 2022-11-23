@@ -20,14 +20,14 @@ export const useUpdateCustomerCartApi = () => {
 export const useGetAdminCartsApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async () => {
-    const resp = await axiosPrivate.get(`/adm-api/carts`);
+    const resp = await axiosPrivate.get<Cart[]>(`/adm-api/carts`);
     return resp.data;
   };
 };
 export const useGetAdminCartApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async (userId: string) => {
-    const resp = await axiosPrivate.get(`/adm-api/carts/${userId}`);
+    const resp = await axiosPrivate.get<Cart>(`/adm-api/carts/${userId}`);
     return resp.data;
   };
 };

@@ -38,13 +38,30 @@ declare type CartItemData = {
   quantity: number;
 };
 
+declare type Cart = {
+  _id: string;
+  user: string;
+  items: [CartItem];
+};
+
 declare type UserCred = {
+  roles: number[];
+  accessToken: string;
+};
+
+declare type UserProfile = {
+  _id: string;
+  name: string;
+  email: string;
+  address: string;
+};
+
+declare type UserInfo = {
   _id: string;
   name: string;
   email: string;
   address: string;
   roles: number[];
-  accessToken: string;
 };
 
 declare type UserRegisterData = {

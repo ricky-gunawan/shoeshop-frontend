@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: UserCred = {
-  _id: "",
-  name: "",
-  email: "",
-  address: "",
   roles: [],
   accessToken: "",
 };

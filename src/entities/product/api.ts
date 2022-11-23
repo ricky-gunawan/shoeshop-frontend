@@ -18,14 +18,14 @@ export const useGetSingleProductDisplayApi = () => {
 };
 
 // customer
-export const useGetProductsApi = () => {
+export const useGetCustomerProductsApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async () => {
     const resp = await axiosPrivate.get<Product[]>(`/cust-api/products`);
     return resp.data;
   };
 };
-export const useGetProductApi = () => {
+export const useGetCustomerProductApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async (productId: string) => {
     const resp = await axiosPrivate.get<Product>(`/cust-api/products/${productId}`);
@@ -34,21 +34,36 @@ export const useGetProductApi = () => {
 };
 
 // admin only
-export const useCreateProductAdminApi = () => {
+export const useGetAdminProductsApi = () => {
+  const axiosPrivate = useAxiosPrivate();
+  return async () => {
+    const resp = await axiosPrivate.get<Product[]>(`/adm-api/products`);
+    return resp.data;
+  };
+};
+export const useGetAdminProductApi = () => {
+  const axiosPrivate = useAxiosPrivate();
+  return async (productId: string) => {
+    const resp = await axiosPrivate.get<Product>(`/adm-api/products/${productId}`);
+    return resp.data;
+  };
+};
+
+export const useCreateAdminProductApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async (productData: ProductData) => {
     const resp = await axiosPrivate.post(`/adm-api/products`, { ...productData });
     return resp.data;
   };
 };
-export const useUpdateProductAdminApi = () => {
+export const useUpdateAdminProductApi = () => {
   const axiosPrivate = useAxiosPrivate();
-  return async (productId: string, productData: ProductData) => {
+  return async ({ productId, productData }: { productId: string; productData: ProductData }) => {
     const resp = await axiosPrivate.put(`/adm-api/products/${productId}`, { ...productData });
     return resp.data;
   };
 };
-export const useDeleteProductAdminApi = () => {
+export const useDeleteAdminProductApi = () => {
   const axiosPrivate = useAxiosPrivate();
   return async (productId: string) => {
     const resp = await axiosPrivate.delete(`/adm-api/products/${productId}`);

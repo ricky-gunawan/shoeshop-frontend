@@ -9,7 +9,7 @@ export const useRegisterApi = () => {
 };
 export const useLoginApi = () => {
   return async (userData: UserLoginData) => {
-    const resp = await axiosPublic.post(`/api/auth/login`, { ...userData }, { withCredentials: true });
+    const resp = await axiosPublic.post<UserCred>(`/api/auth/login`, { ...userData }, { withCredentials: true });
     return resp.data;
   };
 };

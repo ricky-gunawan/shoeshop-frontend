@@ -1,3 +1,4 @@
+import useGetUserProfile from "@/entities/user/hooks/useGetUserProfile";
 import { deleteAuth } from "@/features/auth/models/authSlice";
 import { useLogoutApi } from "@/shared/api/auth";
 import useAppDispatch from "@/shared/hooks/useAppDispatch";
@@ -6,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
 const useLogout = () => {
+  const { removeProfile } = useGetUserProfile();
   const logoutApi = useLogoutApi();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const useLogout = () => {
       dispatch(setModalDisplay(true));
       navigate("/");
       dispatch(deleteAuth());
+      removeProfile();
     },
     onError: () => {
       dispatch(setModalContent({ header: "Message", message: "Failed, try again!" }));

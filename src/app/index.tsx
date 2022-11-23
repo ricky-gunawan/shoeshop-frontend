@@ -1,5 +1,14 @@
 import store from "@/app/store";
+import AdminAddProductPage from "@/pages/AdminAddProductPage";
+import AdminCartPage from "@/pages/AdminCartPage";
+import AdminEditCartPage from "@/pages/AdminEditCartPage";
+import AdminEditOrderPage from "@/pages/AdminEditOrderPage";
+import AdminEditProductPage from "@/pages/AdminEditProductPage";
+import AdminEditUserPage from "@/pages/AdminEditUserPage";
+import AdminOrderPage from "@/pages/AdminOrderPage";
 import AdminPageLayout from "@/pages/AdminPageLayout";
+import AdminProductPage from "@/pages/AdminProductPage";
+import AdminUserPage from "@/pages/AdminUserPage";
 import CartPage from "@/pages/CartPage";
 import CustomerPageLayout from "@/pages/CustomerPageLayout";
 import LoginPage from "@/pages/LoginPage";
@@ -10,7 +19,6 @@ import ProductDetailPage from "@/pages/ProductDetailPage";
 import ProductDisplayDetailPage from "@/pages/ProductDisplayDetailPage";
 import ProductDisplayPage from "@/pages/ProductDisplayPage";
 import ProductListPage from "@/pages/ProductListPage";
-import ProfilePage from "@/pages/ProfilePage";
 import PublicPageLayout from "@/pages/PublicPageLayout";
 import SignupPage from "@/pages/SignupPage";
 import AppContainer from "@/shared/components/AppContainer";
@@ -20,6 +28,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./styles.css";
+import AdminProfilePage from "@/pages/AdminProfilePage";
+import CustomerProfilePage from "@/pages/CustomerProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -46,21 +56,22 @@ function App() {
                 <Route path="products/:productId" element={<ProductDetailPage />} />
                 <Route path="cart" element={<CartPage />} />
                 <Route path="orders" element={<OrderPage />} />
-                {/* <Route path="profile" element={<ProfilePage />} /> */}
+                <Route path="profile" element={<CustomerProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
 
               {/* admin routes */}
               <Route path="admin" element={<AdminPageLayout />}>
-                {/* <Route path="products" element={<AdminProductPage />} />
-              <Route path="products/:productId" element={<AdminEditProductPage />} />
-              <Route path="users" element={<AdminUserPage />} />
-              <Route path="users/:userId" element={<AdminEditUserPage />} />
-              <Route path="orders" element={<AdminOrderPage />} />
-              <Route path="orders/:orderId" element={<AdminEditOrderPage />} />
-              <Route path="carts" element={<AdminCartPage />} />
-              <Route path="carts/:cartId" element={<AdminEditCartPage />} />
-              <Route path="profile" element={<ProfilePage />} /> */}
+                <Route path="products" element={<AdminProductPage />} />
+                <Route path="products/:productId" element={<AdminEditProductPage />} />
+                <Route path="products/add-product" element={<AdminAddProductPage />} />
+                <Route path="users" element={<AdminUserPage />} />
+                <Route path="users/:userId" element={<AdminEditUserPage />} />
+                <Route path="orders" element={<AdminOrderPage />} />
+                <Route path="orders/:orderId" element={<AdminEditOrderPage />} />
+                <Route path="carts" element={<AdminCartPage />} />
+                <Route path="carts/:cartId" element={<AdminEditCartPage />} />
+                <Route path="profile" element={<AdminProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
             </Route>
