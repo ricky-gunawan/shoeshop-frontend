@@ -33,7 +33,7 @@ const AdminOrdersList = () => {
         <div className="grid gap-2 p-2 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {adminOrders.map((item) => (
             <Link to={`/admin/orders/${item._id}`} key={item._id}>
-              <DataCard title1="Date" title2="Name" field1={item.date} field2={item.user} handleDelete={() => handleDelete(item._id)} />
+              <DataCard title1="Date" title2="User ID" field1={item.date} field2={item.user} handleDelete={() => handleDelete(item._id)} />
             </Link>
           ))}
         </div>
