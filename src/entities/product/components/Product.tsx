@@ -13,7 +13,7 @@ const Product = ({ product, isButton = false, handleAddProductToCart }: ProductP
   return (
     <div className="flex max-w-screen-lg flex-col gap-4 sm:flex-row lg:mx-auto">
       <div className="w-full overflow-hidden sm:w-1/2">
-        <img className="mx-auto rounded-lg" width={352} src={`${baseURL}/api/static/images/${product.img}`} alt={product.name} />
+        <img className="mx-auto rounded-lg" width={352} src={product.img} alt={product.name} />
       </div>
       <div className="flex w-full flex-col gap-3 p-4 sm:w-1/2">
         <h2 className="grow-0 text-xl font-bold uppercase">{product.name}</h2>

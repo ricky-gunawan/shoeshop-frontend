@@ -29,7 +29,7 @@ const Order = ({ date, items, totalItems, totalPrice, address, payment, isPaid, 
         {items.map((item) => (
           <div key={item.product} className="flex w-fit flex-col justify-center gap-2 border p-1 xs:flex-row">
             <div className="grow-0 overflow-hidden">
-              <img className="my-1 rounded-lg md:ml-4" width={100} src={`${baseURL}/api/static/images/${item.img}`} alt={item.name} />
+              <img className="my-1 rounded-lg md:ml-4" width={100} src={item.img} alt={item.name} />
             </div>
             <div className="mt-1 grow md:ml-2">
               <h2 className="max-w-[100px] text-base font-semibold uppercase xs:max-w-[250px]">{item.name}</h2>

@@ -10,7 +10,7 @@ const ProductDisplayCard = ({ product }: ProductDisplayCardProps) => {
     <Link to={`/products-display/${product._id}`}>
       <div className="rounded-lg bg-gradient-to-r from-green-700 via-amber-500 to-yellow-400 p-1">
         <div className="aspect-square w-full overflow-hidden">
-          <img className="" src={`${baseURL}/api/static/images/${product.img}`} alt={product.name} />
+          <img className="" src={product.img} alt={product.name} />
         </div>
       </div>
     </Link>

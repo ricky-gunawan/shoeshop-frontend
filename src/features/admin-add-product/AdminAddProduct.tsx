@@ -40,7 +40,7 @@ const AdminAddProduct = () => {
   const uploadImage = useMutation({
     mutationFn: imageUploadApi,
     onSuccess: (data) => {
-      setProductData((prev) => ({ ...prev, img: data }));
+      setProductData((prev) => ({ ...prev, img: data.secure_url }));
       setNewImg(undefined);
     },
   });
@@ -53,7 +53,9 @@ const AdminAddProduct = () => {
 
   const handleImgUpload = (e: MouseEvent) => {
     e.preventDefault();
-    newImg && imgData.append("image", newImg);
+    imgData.append("upload_preset", "ts2quiju");
+    imgData.append("folder", "shoeshop");
+    newImg && imgData.append("file", newImg);
     uploadImage.mutate(imgData);
   };
 
@@ -86,7 +88,7 @@ const AdminAddProduct = () => {
         />
       </div>
       <div>
-        <label className="ml-1 block">image</label>
+        <label className="ml-1 block">image url</label>
         <input
           value={productData.img}
           onChange={handleFormChange}
@@ -96,7 +98,7 @@ const AdminAddProduct = () => {
           id="admin_product_img"
           className="mb-4 w-full rounded-sm border border-slate-300 focus:border-green-700 focus:ring-green-700 disabled:bg-slate-200"
         />
-        {productData.img && <img className="rounded-lg align-top" width={150} src={`${baseURL}/api/static/images/${productData.img}`} title={productData.name} alt={productData.name} />}
+        {productData.img && <img className="rounded-lg align-top" width={150} src={productData.img} title={productData.name} alt={productData.name} />}
         <input onChange={handleNewImg} multiple={false} required={productData.img ? false : true} type="file" accept=".jpg,.jpeg,.png,.webp" name="newImg" id="admin_product_newImg" className="mb-4 block" />
         {newImg && <img className="mt-2 rounded-md" width={100} src={URL.createObjectURL(newImg)} />}
         {newImg && (
