@@ -4,7 +4,7 @@ import axios from "axios";
 export const useImageUploadApi = () => {
   return async (image: FormData) => {
     console.log(image);
-    const resp = await axios.post(`https://api.cloudinary.com/v1_1/ricky-assets/upload`, image);
+    const resp = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/upload`, image);
     return resp.data;
   };
 };

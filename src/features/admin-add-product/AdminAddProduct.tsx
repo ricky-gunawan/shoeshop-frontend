@@ -53,7 +53,7 @@ const AdminAddProduct = () => {
 
   const handleImgUpload = (e: MouseEvent) => {
     e.preventDefault();
-    imgData.append("upload_preset", "ts2quiju");
+    imgData.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
     imgData.append("folder", "shoeshop");
     newImg && imgData.append("file", newImg);
     uploadImage.mutate(imgData);
